@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 class ItemsController extends Controller {
@@ -9,9 +8,9 @@ class ItemsController extends Controller {
         list($not_available, $code) = $this->curl('get_not_available', 'GET');
         list($get_more_five, $code) = $this->curl('get_more_five', 'GET');
         return view('items')->
-                        with('available_items', $available)->
-                        with('not_available_items', $not_available)->
-                        with('five_more_items', $get_more_five);
+                with('available_items', $available)->
+                with('not_available_items', $not_available)->
+                with('five_more_items', $get_more_five);
     }
 
     public function add() {
@@ -52,5 +51,4 @@ class ItemsController extends Controller {
         $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         return [json_decode($output), $http_code];
     }
-
 }
